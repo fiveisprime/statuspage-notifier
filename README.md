@@ -6,8 +6,8 @@ interval at which to check, and the contents of your package.json.
 # Usage
 
 ```js
-require('.')({
-  pkg           : require('./package'),
+require('statuspage-notifier')({
+  name          : 'My API',
   checkInterval : 1 * 60 * 1000,
   statusUrl     : 'http://yzskf90qzqff.statuspage.io/api/v2/status.json'
 }).notify();

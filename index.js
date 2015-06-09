@@ -5,10 +5,10 @@ var concat      = require('concat-stream');
 var ConfigStore = require('configstore');
 
 module.exports = function (options) {
-  if (!options || !options.pkg) throw new Error('pkg is required.');
+  if (!options || !options.name) throw new Error('name is required.');
   if (!options.statusUrl) throw new Error('statusUrl is required');
 
-  var config = new ConfigStore('statuspage-notifier-' + options.pkg.name);
+  var config = new ConfigStore('statuspage-notifier-' + options.name.replace(' ', '_'));
   var surl = url.parse(options.statusUrl);
 
   return {
@@ -36,6 +36,7 @@ module.exports = function (options) {
           }
 
           config.set('lastupdate', Date.now());
+          console.log(options.name + ' status:');
           console.log(response.status.description);
         }));
       }).end();
