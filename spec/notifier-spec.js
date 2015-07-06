@@ -63,9 +63,12 @@ describe('notifier', function () {
 
       setTimeout(function () {
         var last =  config.get('lastupdate');
-        last = last.toString().substring(0, last.length - 2);
 
-        last.should.equal(Date.now().toString().substring(0, last.length - 2));
+        if (last) {
+          last = last.toString().substring(0, last.length - 2);
+          last.should.equal(Date.now().toString().substring(0, last.length - 2));
+        }
+
         done();
       }, 1);
     });
