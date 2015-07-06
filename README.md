@@ -46,6 +46,9 @@ View full details at http://status.modulus.io
 Having trouble finding the API URL for your statuspage? Go to `/api` to see the
 documentation and URL for your service. :)
 
+Special thanks go to [Francesca Varney](https://github.com/franvarney) for
+writing the initial version of the status check.
+
 # License
 
 The MIT License (MIT)
