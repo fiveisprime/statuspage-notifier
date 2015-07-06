@@ -14,16 +14,23 @@ describe('notifier', function () {
       }).should.throw;
     });
 
-    it('should fail when statusUrl is not provided', function () {
+    it('should fail when apiUrl is not provided', function () {
       (function () {
         notifier({ name: 'test' });
       }).should.throw;
     });
 
+    it('should fail when pageUrl is not provided', function () {
+      (function () {
+        notifier({ name: 'test', apiUrl: 'test' });
+      }).should.throw;
+    });
+
     it('should expose the notify method', function () {
       var testNotifier = notifier({
-        name: testName,
-        statusUrl: 'http://test.io/api'
+        name: 'Test',
+        apiUrl: 'http://test.io/api',
+        pageUrl: 'http://status.test.io'
       });
 
       testNotifier.notify.should.exist;
@@ -34,7 +41,8 @@ describe('notifier', function () {
   describe('notification', function () {
     var testNotifier = notifier({
       name: 'Test API',
-      statusUrl: 'http://example.com/api/'
+      apiUrl: 'http://example.com/api/',
+      pageUrl: 'http://example.com/'
     });
 
     before(function () {

@@ -7,13 +7,44 @@ interval at which to check, and the contents of your package.json.
 
 # Usage
 
+Initialize the notifier with the following options
+
+*`name`*: Name of your service. This will be output as the header for the status
+*`checkInterval`*: Minimum time between displaying the status
+*`apiUrl`*: URL of your statuspage API
+*`pageUrl`*: URL of your statuspage page
+
 ```js
-require('statuspage-notifier')({
+var notifier = require('statuspage-notifier')({
   name          : 'My API',
-  checkInterval : 1 * 60 * 1000,
-  statusUrl     : 'http://yzskf90qzqff.statuspage.io/api/v2/status.json'
-}).notify();
+  checkInterval : 1 * 60 * 1000, // Will only run and output once per hour.
+  apiUrl        : 'http://yzskf90qzqff.statuspage.io/api/v2/status.json',
+  pageUrl       : 'http://status.modulus.io'
+});
+
+// Call the notify method as much as you like, the request and output will
+// only happen ater the specified internval has elapsed.
+notifier.notify();
 ```
+
+*Example Output*
+
+```shell
+------------------------------------------
+Modulus status
+------------------------------------------
+Web Interface:       operational
+API:                 operational
+MongoDB:             operational
+Balancers:           operational
+Stats:               operational
+Application Hosts:   operational
+------------------------------------------
+View full details at http://status.modulus.io
+```
+
+Having trouble finding the API URL for your statuspage? Go to `/api` to see the
+documentation and URL for your service. :)
 
 # License
 
