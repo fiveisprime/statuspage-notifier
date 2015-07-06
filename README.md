@@ -10,9 +10,13 @@ interval at which to check, and the contents of your package.json.
 Initialize the notifier with the following options
 
 *`name`*: Name of your service. This will be output as the header for the status
+
 *`checkInterval`*: Minimum time between displaying the status
+
 *`apiUrl`*: URL of your statuspage API
+
 *`pageUrl`*: URL of your statuspage page
+
 
 ```js
 var notifier = require('statuspage-notifier')({
