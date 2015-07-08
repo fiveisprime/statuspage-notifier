@@ -7,7 +7,7 @@ var concat      = require('concat-stream');
 var ConfigStore = require('configstore');
 
 function writeHeader() {
-  console.log(chalk.grey('------------------------------------------'));
+  console.log(chalk.grey('--------------------------------------------------'));
 }
 
 module.exports = function (options) {
@@ -64,6 +64,23 @@ module.exports = function (options) {
           console.log(chalk.white(options.name + ' status'));
           writeHeader();
           console.log(createTable(table));
+          writeHeader();
+          if (response.incidents.length === 0) {
+            console.log(chalk.green('No open incidents'));
+          } else {
+            var incidentMessage = 'There';
+
+            if (response.incidents.length === 1) {
+              incidentMessage += ' is 1 open incident';
+            } else {
+              incidentMessage += ' are ' + response.incidents.length + ' open incidents';
+            }
+
+            console.log(chalk.red(incidentMessage));
+            response.incidents.forEach(function (incident) {
+              console.log(incident.name);
+            });
+          }
           writeHeader();
           console.log('View full details at ' + chalk.blue(options.pageUrl));
         }));

@@ -34,16 +34,19 @@ notifier.notify();
 *Example Output*
 
 ```shell
-------------------------------------------
+--------------------------------------------------
 Modulus status
-------------------------------------------
+--------------------------------------------------
 Web Interface:       operational
 API:                 operational
 MongoDB:             operational
-Balancers:           operational
+Balancers:           degraded performance
 Stats:               operational
 Application Hosts:   operational
-------------------------------------------
+--------------------------------------------------
+There is 1 open incident
+AWS us-east-1a balancer 54.236.216.66 under heavy load
+--------------------------------------------------
 View full details at http://status.modulus.io
 ```
 
