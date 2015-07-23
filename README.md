@@ -1,6 +1,6 @@
 # statuspage-notifier
 
-[![npm version](https://badge.fury.io/js/statuspage-notifier.svg)](http://badge.fury.io/js/statuspage-notifier)
+[![npm version](https://badge.fury.io/js/statuspage-notifier.svg)](http://badge.fury.io/js/statuspage-notifier) [![Code Climate](https://codeclimate.com/github/fiveisprime/statuspage-notifier/badges/gpa.svg)](https://codeclimate.com/github/fiveisprime/statuspage-notifier) [![Test Coverage](https://codeclimate.com/github/fiveisprime/statuspage-notifier/badges/coverage.svg)](https://codeclimate.com/github/fiveisprime/statuspage-notifier/coverage)
 
 Supply the publicly accessible status URL for your statuspage.io account, the
 interval at which to check, and the contents of your package.json.
