@@ -28,10 +28,6 @@
     "text-table": "0.2.0"
   },
   "devDependencies": {
-    "istanbul": "0.3.14",
-    "jshint": "2.8.0",
-    "mocha": "2.2.5",
-    "nock": "2.4.1",
-    "should": "6.0.3"
+    "nock": "2.4.1"
   }
 }
