@@ -1,61 +1,91 @@
+var Code = require('code');
 var ConfigStore = require('configstore');
-var nock        = require('nock');
+var Lab = require('lab');
+var Nock = require('nock');
 
-var notifier    = require('../');
+var Notifier = require('../');
 
-var testName    = 'Test API';
-var config      = new ConfigStore('statuspage-notifier-' + testName.replace(' ', '_'));
+var testName = 'Test API';
+var config = new ConfigStore('statuspage-notifier-' + testName.replace(' ', '_'));
+
+var lab = exports.lab = Lab.script();
+var describe = lab.describe;
+var it = lab.it;
+var before = lab.before;
 
 describe('notifier', function () {
   describe('initialization', function () {
-    it('should fail if no package is provided', function () {
-      (function () {
-        notifier(null);
-      }).should.throw;
+    it('should fail if no package is provided', function (done) {
+      var throws = function () {
+        Notifier(null);
+      };
+
+      Code.expect(throws).to.throw();
+
+      done();
     });
 
-    it('should fail when apiUrl is not provided', function () {
-      (function () {
-        notifier({ name: 'test' });
-      }).should.throw;
+    it('should fail when apiUrl is not provided', function (done) {
+      var throws = function () {
+        Notifier({ name: 'test' });
+      };
+
+      Code.expect(throws).to.throw();
+
+      done();
     });
 
-    it('should fail when pageUrl is not provided', function () {
-      (function () {
-        notifier({ name: 'test', apiUrl: 'test' });
-      }).should.throw;
+    it('should fail when pageUrl is not provided', function (done) {
+      var throws = function () {
+        Notifier({ name: 'test', apiUrl: 'test' });
+      };
+
+      Code.expect(throws).to.throw();
+
+      done();
     });
 
-    it('should expose the notify method', function () {
-      var testNotifier = notifier({
+    it('should expose the notify method', function (done) {
+      var testNotifier = Notifier({
         name: 'Test',
         apiUrl: 'http://test.io/api',
         pageUrl: 'http://status.test.io'
       });
 
-      testNotifier.notify.should.exist;
-      testNotifier.notify.should.be.a.function;
+      Code.expect(testNotifier.notify).to.be.a.function();
+
+      done();
     });
   });
 
   describe('notification', function () {
-    var testNotifier = notifier({
+    var testNotifier = Notifier({
       name: 'Test API',
       apiUrl: 'http://example.com/api/',
       pageUrl: 'http://example.com/'
     });
 
-    before(function () {
-      nock('http://example.com/api/')
+    before(function (done) {
+      Nock('http://example.com/api/')
         .get('/')
         .times(2)
-        .reply(200, { status: { description: 'Test operational' } });
+        .reply(200, {
+          status: { description: 'Test operational' },
+          components: [],
+          incidents: []
+        });
+
+      done();
     });
 
-    it('should get status', function () {
-      (function () {
+    it('should get status', function (done) {
+      var throws = function () {
         testNotifier.notify();
-      }).should.not.throw;
+      };
+
+      Code.expect(throws).to.not.throw();
+
+      done();
     });
 
     it('should store the most recent check', function (done) {
@@ -66,7 +96,7 @@ describe('notifier', function () {
 
         if (last) {
           last = last.toString().substring(0, last.length - 2);
-          last.should.equal(Date.now().toString().substring(0, last.length - 2));
+          Code.expect(last).to.equal(Date.now().toString().substring(0, last.length - 2));
         }
 
         done();

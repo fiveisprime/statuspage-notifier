@@ -10,6 +10,8 @@ function writeHeader() {
   console.log(chalk.grey('--------------------------------------------------'));
 }
 
+if (process.env.NODE_ENV === 'test') console.log = new Function();
+
 module.exports = function (options) {
   if (!options || !options.name) throw new Error('name is required.');
   if (!options.apiUrl) throw new Error('apiUrl is required');
