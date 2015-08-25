@@ -3,6 +3,8 @@ node_js:
   - '0.10'
   - '0.12'
 before_install:
-  - 'npm install codeclimate-test-reporter -g && npm install -g coveralls'
+  - 'npm install codeclimate-test-reporter -g'
+  code_climate:
+    repo_token: ec8c17416fe8a644768baf0e0059d969544df8e4c76e61aea8bbf29d5ae0c9ae
 after_script:
-  - 'npm run gen-coverage && cat coverage/lcov.info | coveralls'
+  - 'npm run gen-coverage && cat coverage/lcov.info | codeclimate-test-reporter'
