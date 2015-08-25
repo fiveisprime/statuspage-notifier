@@ -1,7 +1,6 @@
 example
-spec
+test
 coverage
 
-.jshintrc
+.eslintrc
 .travis.yml
-Makefile
