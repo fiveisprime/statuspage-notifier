@@ -23,14 +23,14 @@
   },
   "homepage": "https://github.com/fiveisprime/statuspage-notifier#readme",
   "dependencies": {
-    "chalk": "1.1.0",
-    "concat-stream": "1.4.8",
-    "configstore": "1.0.0",
+    "chalk": "1.1.1",
+    "concat-stream": "1.5.0",
+    "configstore": "1.2.1",
     "text-table": "0.2.0"
   },
   "devDependencies": {
     "code": "1.x.x",
     "lab": "5.x.x",
-    "nock": "2.4.1"
+    "nock": "2.10.0"
   }
 }
